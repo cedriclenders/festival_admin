@@ -22,3 +22,16 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
+
+Route::group(['middleware' => ['role:Admin']], function () {
+    //
+    Route::get('/admins-list', function()
+    {
+        return view('admins-list');
+    });
+    
+    Route::get('/users-list', function()
+    {
+        return view('users-list');
+    });
+});
