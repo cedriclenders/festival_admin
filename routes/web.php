@@ -13,25 +13,27 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
 
 Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
 
-Route::group(['middleware' => ['role:Admin']], function () {
-    //
-    Route::get('/admins-list', function()
-    {
-        return view('admins-list');
-    });
-    
-    Route::get('/users-list', function()
-    {
-        return view('users-list');
+Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['role:Admin']], function () {
+        //
+        Route::get('/admins-list', function()
+        {
+            return view('admins-list');
+        });
+
+        Route::get('/users-list', function()
+        {
+            return view('users-list');
+        });
+
+        Route::get('/', [App\Http\Controllers\FestivalController::class, 'getFestival'])->name('home');
+
     });
 });

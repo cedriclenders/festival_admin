@@ -1,16 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-</head>
-<body>
-    <ul>
-        @foreach(App\Models\User::admins() as $admin)
-            <li>{{$admin->name}}</li>
-        @endforeach
-    </ul>
-</body>
-</html>
+@extends('layouts.master')
+
+@section('content')
+    <table class="table">
+        <thead>
+            <tr>
+              <th scope="col">ID</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(App\Models\User::admins() as $admin)
+                <tr>
+                <th scope="row">{{$admin->id}}</th>
+                <td>{{$admin->name}}</td>
+                <td>{{$admin->email}}</td>
+                </tr>
+            @endforeach
+        </tbody>
+    </table>
+@endsection
