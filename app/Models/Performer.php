@@ -14,4 +14,7 @@ class Performer extends Model
         return $this->belongsTo(Genre::class);
     }
 
+    public function performances(){
+        return $this->hasMany(Performances::class);
+    }
 }

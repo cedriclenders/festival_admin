@@ -14,11 +14,13 @@ class FestivalController extends Controller
         return view('festivals', ['festivals' => $festivals]);
     }
 
-    public function updateDescription(Request $request)
+    public function updateInfo(Request $request)
     {
         $description = $request['description'];
+        $name = $request['name'];
         $festival = Festival::findOrFail(1);
         $festival->description = $description;
+        $festival->name = $name;
         $festival->save();
 
         return redirect('/');

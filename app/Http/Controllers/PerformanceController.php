@@ -18,5 +18,15 @@ class PerformanceController extends Controller
         }
     }
 
+    public function getPerformances()
+    {
+        $performances = Performance::all();
+        
+        foreach( $performances as $performance)
+        {
+            var_dump($performance->performer->name);
+        }
+
+    }
     
 }

@@ -14,4 +14,10 @@ class Performance extends Model
     {
         return $this->hasMany(Like::class);
     }
+
+    public function performer()
+    {
+        return $this->belongsTo(Performer::class);
+    }
+    
 }

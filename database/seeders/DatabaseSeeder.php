@@ -123,6 +123,8 @@ class DatabaseSeeder extends Seeder
          $this->stageSeeder('Main Stage',50.969784, 4.686307, 'De hoofdstage van het festival' );  
          $this->timeslotSeeder('2022-06-28 12:00:00', '2022-07-03 12:00:00');
          $this->performanceSeeder(1,1,1);
+         $this->performanceSeeder(1,1,1);
+         $this->performanceSeeder(1,1,1);
          $this->likeSeeder(2,1);
          $this->likeSeeder(1,1);
 
