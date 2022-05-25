@@ -8,9 +8,19 @@ use App\Models\Festival;
 class FestivalController extends Controller
 {
     //
-    public function getFestival()
+    public function getAll()
     {
-        $festival = Festival::find(1)->first();
-        return view('home', compact('festival'));
+        $festivals = Festival::all();
+        return view('festivals', ['festivals' => $festivals]);
+    }
+
+    public function updateDescription(Request $request)
+    {
+        $description = $request['description'];
+        $festival = Festival::findOrFail(1);
+        $festival->description = $description;
+        $festival->save();
+
+        return redirect('/');
     }
 }

@@ -19,6 +19,9 @@ Auth::routes();
 
 
 Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
+Route::get('/festivals', [App\Http\Controllers\FestivalController::class, 'getAll']);
+Route::post('description', [App\Http\Controllers\FestivalController::class, 'updateDescription'])->name('festivalUpdateDescription');
+
 
 Route::group(['middleware' => 'auth'], function () {
     Route::group(['middleware' => ['role:Admin']], function () {
@@ -33,7 +36,7 @@ Route::group(['middleware' => 'auth'], function () {
             return view('users-list');
         });
 
-        Route::get('/', [App\Http\Controllers\FestivalController::class, 'getFestival'])->name('home');
+        Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
     });
 });

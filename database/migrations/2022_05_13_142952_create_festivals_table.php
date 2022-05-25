@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('festivals', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
+            $table->longText('description');
             $table->double('long');
             $table->double('lat');
             $table->dateTime('start_datetime')->nullable();
