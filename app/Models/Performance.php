@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
 class Performance extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'performer_id',
+        'timeslot_id',
+        'stage_id'
+    ];
 
     public function likes()
     {
@@ -19,5 +25,14 @@ class Performance extends Model
     {
         return $this->belongsTo(Performer::class);
     }
+
+    public function stage()
+    {
+        return $this->belongsTo(Stage::class);
+    }
     
+    public function timeslot()
+    {
+        return $this->belongsTo(Timeslot::class);
+    }
 }

@@ -8,13 +8,20 @@ use Illuminate\Database\Eloquent\Model;
 class Performer extends Model
 {
     use HasFactory;
-
+    protected $fillable = [
+        'id',
+        'name',
+        'description',
+        'genre_id',
+        'youtube_link',
+        'image_source'
+    ];
     public function genre()
     {
         return $this->belongsTo(Genre::class);
     }
 
     public function performances(){
-        return $this->hasMany(Performances::class);
+        return $this->hasMany(Performance::class);
     }
 }

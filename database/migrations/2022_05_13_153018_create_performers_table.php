@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('performers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->string('youtube_link');
-            $table->string('image_source');
+            $table->longText('description');
+            $table->string('youtube_link')->nullable();
+            $table->string('image_source')->nullable();
             $table->foreignId('genre_id')->constrained('genres');
             $table->timestamps();
         });

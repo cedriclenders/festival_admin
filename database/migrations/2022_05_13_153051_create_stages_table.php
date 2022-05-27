@@ -16,9 +16,9 @@ return new class extends Migration
         Schema::create('stages', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('description');
-            $table->double('long');
-            $table->double('lat');
+            $table->longText('description');
+            $table->double('long')->nullable();
+            $table->double('lat')->nullable();
             $table->timestamps();
         });
     }

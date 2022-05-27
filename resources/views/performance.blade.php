@@ -1,7 +1,5 @@
 @extends('layouts.master')
-
 @section('content')
-
 <div class="container-fluid">
 
     <!-- Page Heading -->
@@ -11,119 +9,57 @@
                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/users-list">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Users (total)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{App\Models\User::users()->count()}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                    {{-- <div class="row no-gutters align-items-center">
-                        <button type="button" class="btn btn-outline-primary">More Info</button>
-                    </div> --}}
-                </div>
-            </div>
-            </a>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/admins-list">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Admins (TOTAL)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{App\Models\User::admins()->count()}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-cog fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </a>
-        </div>
-
-         <!-- Earnings (Monthly) Card Example -->
-         <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/performances">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">
-                                Performances (TOTAL)</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800">{{App\Models\Performance::count()}}</div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-user-cog fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </a>
-        </div>
-
-        <!-- Stages -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <a href="/stages">
-                <div class="card border-left-warning shadow h-100 py-2">
-                    <div class="card-body">
-                        <div class="row no-gutters align-items-center">
-                            <div class="col mr-2">
-                                <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                    Stages (TOTAL)</div>
-                                <div class="h5 mb-0 font-weight-bold text-gray-800">{{App\Models\Stage::count()}}</div>
-                            </div>
-                            <div class="col-auto">
-                                <i class="fas fa-comments fa-2x text-gray-300"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-        </div>
-    
-    </div>
 
     <!-- Content Row -->
 
     <div class="row">
-
         <!-- Description -->
         <div class="col-xl-8 col-lg-7">
+            
+            
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Festival Info</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Performer</h6>
                 </div>
                 <!-- Description Body -->
                 <div class="card-body">
-                    <form method="POST" action="{{route('festivalInfoUpdate')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('performanceUpdate')}}" enctype="multipart/form-data">
                         @csrf
-                        <div class="form-group">
-                            <label for="name">Name:</label>
-                            <input type="text" name="name" class="form-control" id="name" value="{{ $festival->name }}">
+                        <input style="display: none" type="text" name="id" value="{{ $performance->id }}">
+                        <input style="display: none" type="text" name="performer_id" value="{{ $performance->performer->id }}">
+                        <div class="form-group required">
+                            <label class="control-label" for="name">Name:</label>
+                            <input type="text" name="name" class="form-control" id="name" value="{{ $performance->performer->name }}" required>
                           </div>
                         <div class="form-group">
-                            <label>Description:</label><textarea class="ckeditor form-control" name="description">{{ $festival->description }} </textarea>
+                            <label>Description:</label><textarea class="ckeditor form-control" name="description" required>{{ $performance->performer->description }} </textarea>
                         </div>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </form>
+
+                        <div class="form-group">
+                            <label for="name">Genre:</label>
+                            @foreach (App\Models\Genre::all() as $genre)
+                                @if ($performance->performer->genre_id == $genre->id)
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genre_id" id="genre_id" value="{{$genre->id}}" checked>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        {{$genre->name}}
+                                    </label>
+                                </div>
+
+                                @else
+                                
+                                <div class="form-check">
+                                    <input class="form-check-input" type="radio" name="genre_id" id="genre_id" value="{{$genre->id}}" required>
+                                    <label class="form-check-label" for="flexRadioDefault1">
+                                        {{$genre->name}}
+                                    </label>
+                                </div>
+                                @endif
+                            @endforeach
+                        </div>
+                    
                 </div>
             </div>
         </div>
@@ -134,41 +70,56 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Revenue Sources</h6>
-                    <div class="dropdown no-arrow">
-                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
-                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            <i class="fas fa-ellipsis-v fa-sm fa-fw text-gray-400"></i>
-                        </a>
-                        <div class="dropdown-menu dropdown-menu-right shadow animated--fade-in"
-                            aria-labelledby="dropdownMenuLink">
-                            <div class="dropdown-header">Dropdown Header:</div>
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                        </div>
-                    </div>
+                    <h6 class="m-0 font-weight-bold text-primary">Stage</h6>
                 </div>
-                <!-- Card Body -->
+                <!-- Description Body -->
                 <div class="card-body">
-                    <div class="chart-pie pt-4 pb-2">
-                        <canvas id="myPieChart"></canvas>
-                    </div>
-                    <div class="mt-4 text-center small">
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-primary"></i> Direct
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-success"></i> Social
-                        </span>
-                        <span class="mr-2">
-                            <i class="fas fa-circle text-info"></i> Referral
-                        </span>
-                    </div>
+                
+                        @foreach (App\Models\Stage::all() as $stage)
+                            @if ($performance->stage->id == $stage->id)
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="stage_id" id="stage_id" value="{{$stage->id}}" checked>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    {{$stage->name}}
+                                </label>
+                            </div>
+
+                            @else
+                            
+                            <div class="form-check">
+                                <input class="form-check-input" type="radio" name="stage_id" id="stage_id" value="{{$stage->id}}" required>
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                    {{$stage->name}}
+                                </label>
+                            </div>
+                            @endif
+                        @endforeach
+                       
                 </div>
-            </div>
         </div>
+        <div class="card shadow mb-4">
+            <!-- Card Header - Dropdown -->
+            <div
+                class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                <h6 class="m-0 font-weight-bold text-primary">Timeslot</h6>
+            </div>
+            <!-- Description Body -->
+            <div class="card-body">
+                    <input style="display: none" type="text" name="timeslot_id" value="{{ $performance->timeslot->id }}">
+                    <div class="form-group">
+                    <label for="startTime">Start time:</label>
+                    <input type="datetime-local" id="startTime" name="startTime" value="{{$performance->timeslot->dateTimeFormatStart()}}" required>
+                    </div>
+                    <div class="form-group">
+                    <label for="endTime">End time:</label>
+                    <input type="datetime-local" id="endTime" name="endTime" value="{{$performance->timeslot->dateTimeFormatEnd()}}" required>
+                    </div>
+                     
+                    <br/>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+    </div>
     </div>
 
     <!-- Content Row -->

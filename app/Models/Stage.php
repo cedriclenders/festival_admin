@@ -8,4 +8,13 @@ use Illuminate\Database\Eloquent\Model;
 class Stage extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'id',
+        'name',
+        'description',
+    ];
+
+    public function performances(){
+        return $this->hasMany(Performance::class);
+    }
 }
