@@ -14,7 +14,6 @@ class Performer extends Model
         'description',
         'genre_id',
         'youtube_link',
-        'image_source'
     ];
     public function genre()
     {
@@ -23,5 +22,10 @@ class Performer extends Model
 
     public function performances(){
         return $this->hasMany(Performance::class);
+    }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
     }
 }

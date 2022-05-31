@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->longText('description');
-            $table->double('long');
-            $table->double('lat');
+            $table->double('long')->nullable();
+            $table->double('lat')->nullable();
             $table->dateTime('start_datetime')->nullable();
             $table->dateTime('end_datetime')->nullable();
             $table->foreignId('user_id')->constrained();

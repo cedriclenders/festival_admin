@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Performance;
 use App\Models\Performer;
 use App\Models\Timeslot;
+use App\Models\Like;
 
 class PerformanceController extends Controller
 {
@@ -59,5 +60,20 @@ class PerformanceController extends Controller
         $performance->save();
 
         return redirect('/performance/'. $performance->id);
+    }
+
+    public function delete($id)
+    {
+        $performance = Performance::findOrFail($id);
+        $likes = $performance->likes;
+
+        foreach($likes as $like)
+        {
+            Like::findOrFail($like->id)->delete();
+        }
+        
+        $performance->delete();
+
+        return redirect('/performances/'); 
     }
 }

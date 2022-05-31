@@ -24,7 +24,8 @@
                     @foreach($performances as $performance)
                         <tr>
                         <th scope="row">{{$performance->id}}</th>
-                        <td>{{$performance->stage->name}}</td>
+                        <td>{{$performance->stage->name ?? 'No stage selected'}}</td>
+                        
                         <td>{{$performance->performer->name}}</td>
                         <td>{{$performance->timeslot->start_datetime}}</td>
                         <td>{{$performance->timeslot->end_datetime}}</td>
@@ -39,7 +40,9 @@
                                     </li>
                                 
                                 <li class="list-inline-item">
-                                    <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                    <a href="/performance-delete/{{$performance->id}}">
+                                        <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
+                                    </a>    
                                 </li>
                             </ul>
                         </td>

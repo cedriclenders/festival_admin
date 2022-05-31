@@ -32,4 +32,13 @@ class StageController extends Controller
 
        return redirect('/stages');
    }
+
+   public function delete($id)
+   {
+       $stage = Stage::find($id);
+       
+       $stage->delete();
+
+       return redirect('/stages');   
+   }
 }

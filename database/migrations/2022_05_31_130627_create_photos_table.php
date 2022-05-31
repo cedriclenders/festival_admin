@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('performances', function (Blueprint $table) {
+        Schema::create('photos', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('performer_id')->constrained();
-            $table->foreignId('stage_id')->nullable()->constrained()->cascadeOnUpdate()->nullOnDelete();
-            $table->foreignId('timeslot_id')->constrained();
+            $table->string('name');
+            $table->string('path');
+            $table->foreignId('festival_id')->nullable()->constrained();
+            $table->foreignId('performer_id')->nullable()->constrained();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('performances');
+        Schema::dropIfExists('photos');
     }
 };

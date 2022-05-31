@@ -13,4 +13,9 @@ class Festival extends Model
     {
         return $this->belongsTo(User::class, 'foreign_key');
     }
+
+    public function photos()
+    {
+        return $this->hasMany(Photo::class);
+    }
 }

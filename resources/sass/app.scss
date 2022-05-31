@@ -1,8 +1,8 @@
-// Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+#google-map {
+    position: relative !important; 
+    overflow: hidden !important;
+    max-height: 400px !important;
+    height: 400px !important;
+    width: 100% !important;
+}
 
-// Variables
-@import 'variables';
-
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';

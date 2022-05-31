@@ -22,7 +22,7 @@
                     <tr>
                     <th scope="row">{{$stage->id}}</th>
                     <td>{{$stage->name}}</td>
-                    <td>{{$stage->description}}</td>
+                    <td>{!! substr($stage->description, 0, 35) !!} ...</td>
                     <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
@@ -34,6 +34,7 @@
                                 </li>
                             
                             <li class="list-inline-item">
+                                <a href="/stage-delete/{{$stage->id}}">
                                 <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>
                             </li>
                         </ul>

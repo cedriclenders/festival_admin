@@ -22,6 +22,10 @@
 
     <!-- Custom styles for this template-->
     <link href="{{asset('admin/css/sb-admin-2.min.css')}}" rel="stylesheet">
+    <link href="{{asset('/css/app.css')}}" rel="stylesheet">
+
+    <!-- Fancybox CSS -->
+    <link rel="stylesheet" href="@@path/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.css">
 
 </head>
 
@@ -115,6 +119,61 @@
         $(document).ready(function () {
             $('.ckeditor').ckeditor();
         });
+    </script>
+
+    <!-- Fancybox JS -->
+    <script src="@@path/vendor/@fancyapps/fancybox/dist/jquery.fancybox.min.js"></script>
+
+    <!-- Script for google maps -->
+    <script
+                    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrQsfEb0xqDCxuElEgT9m-HmpwzO4_bAs&callback=initMap"
+                    defer
+                    ></script>
+    <script>
+        function initMap() {
+
+            var myLatlng = { lat:  50.85045, lng:  4.34878 };
+            var lat = parseFloat(document.getElementById("lat").value);
+            var long = parseFloat(document.getElementById("long").value);
+            if(isNaN(lat) || isNaN(long)){
+                 myLatlng = { lat:  50.85045, lng:  4.34878 };
+            }
+            else{
+                 myLatlng = { lat:  lat, lng:  long };
+            }
+
+            const map = new google.maps.Map(document.getElementById("google-map"), {
+                zoom: 14,
+                center: myLatlng,
+                streetViewControl: false,
+            });
+            // Create the initial InfoWindow.
+            let infoWindow = new google.maps.InfoWindow({
+                content: "Locatie Evenement",
+                position: myLatlng,
+
+            });
+
+            infoWindow.open(map);
+            // Configure the click listener.
+            map.addListener("click", (mapsMouseEvent) => {
+                // Close the current InfoWindow.
+                infoWindow.close();
+                infoWindow = new google.maps.InfoWindow({
+                position: mapsMouseEvent.latLng,
+                });
+                infoWindow.setContent(
+                    "Locatie Evenement"
+                );
+                var coordinates = mapsMouseEvent.latLng.toJSON();
+                document.getElementById("long").value = coordinates.lng;
+                document.getElementById("lat").value = coordinates.lat;
+                infoWindow.open(map);
+            });
+            }
+
+            window.initMap = initMap;
+
     </script>
 
 </body>
