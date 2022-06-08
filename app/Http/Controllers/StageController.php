@@ -28,6 +28,8 @@ class StageController extends Controller
        $stage = Stage::firstOrNew(['id' => $request['id']]);
        $stage->description = $description;
        $stage->name = $name;
+       $stage->long = $request['long'];
+       $stage->lat = $request['lat'];
        $stage->save();
 
        return redirect('/stages');

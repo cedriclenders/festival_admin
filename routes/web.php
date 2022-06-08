@@ -59,8 +59,9 @@ Route::group(['middleware' => 'auth'], function () {
         Route::post('save-festival-image', [App\Http\Controllers\UploadImageController::class, 'saveFestivalImage']);
         Route::post('save-performer-image/{performance}', [App\Http\Controllers\UploadImageController::class, 'savePerformerImage']);
         Route::post('update-stage', [App\Http\Controllers\StageController::class, 'update'])->name('stageUpdate');
-        Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
         Route::post('update-performance', [App\Http\Controllers\PerformanceController::class, 'update'])->name('performanceUpdate');
-
+        Route::get('/make-admin/{id}', [App\Http\Controllers\UserController::class, 'upgrade']);
+        Route::get('/make-user/{id}', [App\Http\Controllers\UserController::class, 'downgrade']);
+        
     });
 });
