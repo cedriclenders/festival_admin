@@ -18,7 +18,6 @@ return new class extends Migration
             $table->string('name');
             $table->longText('description');
             $table->string('youtube_link')->nullable();
-            $table->string('image_source')->nullable();
             $table->foreignId('genre_id')->constrained('genres');
             $table->timestamps();
         });

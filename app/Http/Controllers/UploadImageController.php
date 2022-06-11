@@ -6,6 +6,7 @@ use App\Models\Performer;
 use Illuminate\Http\Request;
 use App\Models\Photo;
 use App\Models\Performance;
+use App\Models\Festival;
 
 class UploadImageController extends Controller
 {
@@ -53,6 +54,19 @@ class UploadImageController extends Controller
  
         return redirect('/performance/'.$performance->id)->with('error', 'Image Has been uploaded');
  
+    }
+
+    public function getFestivalImagePaths()
+    {
+        $festival = Festival::findOrFail(1);
+
+        $festivalPaths = [];
+        foreach ($festival->photos as $photo)
+        {
+            array_push($festivalPaths, request()->getHost().'/'.$photo->path);
+        }
+
+        return $festivalPaths;
     }
 
     

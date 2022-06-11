@@ -37,13 +37,12 @@ class DatabaseSeeder extends Seeder
         $user->assignRole('User');
     }
 
-    private function performerSeeder($name, $description, $youtubeLink, $imageSource, $genreId)
+    private function performerSeeder($name, $description, $youtubeLink, $genreId)
     {
         Performer::create([
             'name' => $name,
             'description' => $description,
             'youtube_link' => $youtubeLink,
-            'image_source' => $imageSource,
             'genre_id' => $genreId,
          ]);
     }
@@ -118,7 +117,7 @@ class DatabaseSeeder extends Seeder
          $this->userSeeder('Tommeke','admin@gmail.com','Wachtwoord123!');
          $this->userSeeder('Sandra','admin@test.com','Wachtwoord123!');
          $this->userSeeder('Dirk','admin@speciaal.com','Wachtwoord123!');
-         $this->performerSeeder('Red hot Chili Peppers', 'Red Hot Chili Peppers is een Amerikaanse band die funk, rap, punk en pop combineert met rock. De band is in 1983 opgericht in de Californische stad Los Angeles. De band bestaat tegenwoordig uit Anthony Kiedis, Flea, Chad Smith en John Frusciante.', 'https://www.youtube.com/watch?v=OS8taasZl8k', 'https://oor.nl/media/2021/10/RHCP-CRED-Clara-Balzary.jpg',1);
+         $this->performerSeeder('Red hot Chili Peppers', 'Red Hot Chili Peppers is een Amerikaanse band die funk, rap, punk en pop combineert met rock. De band is in 1983 opgericht in de Californische stad Los Angeles. De band bestaat tegenwoordig uit Anthony Kiedis, Flea, Chad Smith en John Frusciante.', 'https://www.youtube.com/watch?v=OS8taasZl8k',1);
          $this->festivalSeeder('Rock Werchter', 'Rock Werchter is een pop- en rockfestival dat elk jaar plaatsvindt in het dorpje Werchter, een deelgemeente van het Vlaams-Brabantse Rotselaar. Het Belgische muziekfestival vindt plaats in het laatste weekend van juni of het eerste van juli.',50.969784, 4.686307, '2022-06-28 12:00:00', '2022-07-03 12:00:00', 1);
          $this->stageSeeder('Main Stage',50.969784, 4.686307, 'De hoofdstage van het festival' );  
          $this->timeslotSeeder('2022-06-28 12:00:00', '2022-07-03 12:00:00');

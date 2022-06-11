@@ -17,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::get('festival-images', [App\Http\Controllers\UploadImageController::class, 'getFestivalImagePaths']);
+Route::get('perfomer-images/{id}', [App\Http\Controllers\UploadImageController::class, 'getPerformerImagePaths']);
