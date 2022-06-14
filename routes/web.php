@@ -63,5 +63,15 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/make-admin/{id}', [App\Http\Controllers\UserController::class, 'upgrade']);
         Route::get('/make-user/{id}', [App\Http\Controllers\UserController::class, 'downgrade']);
         
+        Route::get('/faqs', [App\Http\Controllers\FaqController::class, 'getAll']);
+        Route::get('/faq-add', function()
+        {
+            return view('faq-add');
+        });
+        Route::post('update-faq', [App\Http\Controllers\FaqController::class, 'update'])->name('faqUpdate');
+        Route::get('/faq/{id}', [App\Http\Controllers\FaqController::class, 'get']);
+        Route::get('/faq-delete/{id}', [App\Http\Controllers\FaqController::class, 'delete']);
+
+
     });
 });
