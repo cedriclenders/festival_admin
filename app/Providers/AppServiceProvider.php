@@ -30,7 +30,7 @@ class AppServiceProvider extends ServiceProvider
         //
         
         if (Schema::hasTable('festivals')) {
-            $festivals = Festival::all();
+            $festivals = Festival::all()->count();
             if($festivals != null)
             {
                 $festival = Festival::find(1)->first();

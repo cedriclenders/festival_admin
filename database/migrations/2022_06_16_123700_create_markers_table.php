@@ -13,14 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('festivals', function (Blueprint $table) {
+        Schema::create('markers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->longText('description')->nullable();
-            $table->double('long')->nullable();
-            $table->double('lat')->nullable();
-            $table->dateTime('start_datetime')->nullable();
-            $table->dateTime('end_datetime')->nullable();
+            $table->string('emoji_path');
+            $table->double('long');
+            $table->double('lat');
+            $table->foreignId('user_id')->constrained();
             $table->timestamps();
         });
     }
@@ -32,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('festivals');
+        Schema::dropIfExists('markers');
     }
 };
