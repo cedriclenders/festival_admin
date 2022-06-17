@@ -19,8 +19,8 @@ return new class extends Migration
             $table->longText('description')->nullable();
             $table->double('long')->nullable();
             $table->double('lat')->nullable();
-            $table->dateTime('start_datetime')->nullable();
-            $table->dateTime('end_datetime')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
             $table->timestamps();
         });
     }

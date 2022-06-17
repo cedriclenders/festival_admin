@@ -55,7 +55,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
         Route::get('/festivals', [App\Http\Controllers\FestivalController::class, 'getAll']);
-        Route::post('description', [App\Http\Controllers\FestivalController::class, 'updateInfo'])->name('festivalInfoUpdate');
+        Route::post('/update-festival', [App\Http\Controllers\FestivalController::class, 'updateInfo'])->name('festivalInfoUpdate');
         Route::post('save-festival-image', [App\Http\Controllers\UploadImageController::class, 'saveFestivalImage']);
         Route::post('save-performer-image/{performance}', [App\Http\Controllers\UploadImageController::class, 'savePerformerImage']);
         Route::post('update-stage', [App\Http\Controllers\StageController::class, 'update'])->name('stageUpdate');

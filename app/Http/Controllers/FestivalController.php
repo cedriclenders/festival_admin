@@ -16,15 +16,21 @@ class FestivalController extends Controller
 
     public function updateInfo(Request $request)
     {
-        $description = $request['description'];
-        $name = $request['name'];
-        $long = $request['long'];
-        $lat = $request['lat'];
+        $validated = $request->validate([
+            'name' => 'required',
+            'start' => 'required',
+            'end' => 'required|date|after_or_equal:start',
+            'lat' => 'nullable|numeric|min:-90|max:90',
+            'long' => 'nullable|numeric|min:-180|max:180',
+        ]);
+
         $festival = Festival::findOrFail(1);
-        $festival->description = $description;
-        $festival->name = $name;
-        $festival->long = $long;
-        $festival->lat = $lat;
+        $festival->description = $request['description'];
+        $festival->name = $request['name'];
+        $festival->long = $request['long'];
+        $festival->lat = $request['lat'];
+        $festival->start_date = $request['start'];
+        $festival->end_date = $request['end'];
         $festival->save();
 
         return redirect('/');

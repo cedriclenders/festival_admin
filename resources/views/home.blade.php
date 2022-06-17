@@ -3,7 +3,15 @@
 @section('content')
 
 <div class="container-fluid">
-
+    @if ($errors->any())
+        <div class="alert alert-danger">
+            <ul class="error-alert" style="margin: 0">
+                @foreach ($errors->all() as $error)
+                    <li>{{ $error }}</li>
+                @endforeach
+            </ul>
+        </div>
+    @endif
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Overview</h1>
@@ -126,14 +134,20 @@
 
                 <div class="card-body">
                     <input style="display: none" type="text" name="timeslot_id" value="">
-                    <div class="form-group">
-                    <label for="startTime">Start time:</label>
-                    <input type="datetime-local" id="startTime" name="startTime"  required>
+                    <div styleclass="form-group">
+                        <label for="start">Start time:</label>
+                       
+                        <input type="date" id="start" name="start"   @if($festival->start_date)
+                        value="{{ $festival->start_date->format('Y-m-d') }}"
+                        @endif required >
+                        
                     </div>
                     <div class="form-group">
-                    <label for="endTime">End time:</label>
-                    <input type="datetime-local" id="endTime" name="endTime" required>
-                    </div>
+                        <label for="end">End time:</label>
+                        <input type="date" id="end" name="end"  @if($festival->end_date)
+                        value="{{ $festival->end_date->format('Y-m-d') }}"
+                        @endif required>
+                        </div>
                     <br/>
                 </div>
             </div>

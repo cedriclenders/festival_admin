@@ -5,3 +5,7 @@
   height: 400px !important;
   width: 100% !important;
 }
+
+.error-alert{
+  margin: 0;
+}

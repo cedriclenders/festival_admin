@@ -8,6 +8,12 @@ use Illuminate\Database\Eloquent\Model;
 class Festival extends Model
 {
     use HasFactory;
+    /**
+     * The attributes that should be mutated to dates.
+     *
+     * @var array
+     */
+    protected $dates = ['start_date', 'end_date'];
 
     public function user()
     {
