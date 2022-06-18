@@ -54,8 +54,6 @@ Route::group(['middleware' => 'auth'], function () {
         
         Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-        Route::get('/likes', [App\Http\Controllers\PerformanceController::class, 'getLikes']);
-        Route::get('/festivals', [App\Http\Controllers\FestivalController::class, 'getAll']);
         Route::post('/update-festival', [App\Http\Controllers\FestivalController::class, 'updateInfo'])->name('festivalInfoUpdate');
 
         Route::post('/add-genre', [App\Http\Controllers\GenreController::class, 'add'])->name('addGenre');

@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('common.errors')
         <table class="table">
             <thead>
                 <tr>

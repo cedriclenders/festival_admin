@@ -22,6 +22,10 @@ class FaqController extends Controller
  
     public function update(Request $request)
     {
+        $validated = $request->validate([
+            'question' => 'required',
+            'answer' => 'required',
+        ]);
         $question = $request['question'];
         $answer = $request['answer'];
         $faq = FrequentlyAskedQuestion::firstOrNew(['id' => $request['id']]);

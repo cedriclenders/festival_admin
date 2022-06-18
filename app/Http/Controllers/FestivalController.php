@@ -7,12 +7,6 @@ use App\Models\Festival;
 
 class FestivalController extends Controller
 {
-    //
-    public function getAll()
-    {
-        $festivals = Festival::all();
-        return view('festivals', ['festivals' => $festivals]);
-    }
 
     public function updateInfo(Request $request)
     {

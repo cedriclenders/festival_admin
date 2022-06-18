@@ -2,6 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
+        @include('common.errors')
         <div class="float-right">
             <a href="/faq-add"><button type="button" class="btn btn-primary">Add FAQ</button></a>
         </div>

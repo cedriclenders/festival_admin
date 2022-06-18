@@ -1,7 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
-
+    @include('common.errors')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Add FAQ</h1>
@@ -26,7 +26,7 @@
                         <input style="display: none" type="text" name="id" value="">
                         <div class="form-group">
                             <label for="name">Question:</label>
-                            <input type="text" name="question" class="form-control" id="question" value="">
+                            <input type="text" name="question" class="form-control" id="question" value="" required>
                           </div>
                         <div class="form-group">
                             <label>Answer:</label><textarea class="ckeditor form-control" name="answer"></textarea>

@@ -1,6 +1,7 @@
 @extends('layouts.master')
 
 @section('content')
+    @include('common.errors')
     <div class="container-fluid">
         @include('common.errors')
         <div class="float-right">

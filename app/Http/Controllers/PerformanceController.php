@@ -11,16 +11,6 @@ use App\Rules\Url;
 
 class PerformanceController extends Controller
 {
-    //
-
-    public function getLikes()
-    {
-        $likes = Performance::find(1)->likes;
-        foreach ($likes as $like)
-        {
-            echo($like->user_id);
-        }
-    }
 
     public function getAll()
     {
@@ -43,7 +33,7 @@ class PerformanceController extends Controller
             'description' => 'required',
             'genre_id' => 'required',
             'startTime' => 'required|date_format:Y-m-d\TH:i',
-            'endTime' => 'required|date_format:Y-m-d\TH:i',
+            'endTime' => 'required|date_format:Y-m-d\TH:i|after:startTime',
             'youtube_link' =>  ['nullable', new Url],
         ]);
 
@@ -55,7 +45,8 @@ class PerformanceController extends Controller
         $performer->name = $request['name'];
         $performer->description = $request['description'];
         $performer->genre_id = $request['genre_id'];
-        $performer->youtube_link = $request['youtube_link'];
+
+        $performer->youtube_link = $this->getYoutubeEmbedUrl($request['youtube_link']);
         $performer->save();
 
         $timeSlot = Timeslot::firstOrNew(['id' => $request['timeslot_id']]);
@@ -85,4 +76,14 @@ class PerformanceController extends Controller
 
         return redirect('/performances/'); 
     }
+
+    function getYoutubeEmbedUrl($url){
+
+        $urlParts   = explode('/', $url);
+        $vidid      = explode( '&', str_replace('watch?v=', '', end($urlParts) ) );
+    
+        return 'https://www.youtube.com/embed/' . $vidid[0] ;
+    }
+
+    
 }

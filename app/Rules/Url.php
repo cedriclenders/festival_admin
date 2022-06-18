@@ -36,6 +36,6 @@ class Url implements Rule
      */
     public function message()
     {
-        return 'Youtube link has to be a url with http://... or https://...';
+        return 'The :attribute has to be a url with http://... or https://...';
     }
 }
