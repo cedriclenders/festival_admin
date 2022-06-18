@@ -7,6 +7,7 @@ use App\Models\Performance;
 use App\Models\Performer;
 use App\Models\Timeslot;
 use App\Models\Like;
+use App\Rules\DateBetweenFestival;
 use App\Rules\Url;
 
 class PerformanceController extends Controller
@@ -32,8 +33,8 @@ class PerformanceController extends Controller
             'name' => 'required',
             'description' => 'required',
             'genre_id' => 'required',
-            'startTime' => 'required|date_format:Y-m-d\TH:i',
-            'endTime' => 'required|date_format:Y-m-d\TH:i|after:startTime',
+            'startTime' => ['required', 'date_format:Y-m-d\TH:i', new DateBetweenFestival],
+            'endTime' => ['required', 'date_format:Y-m-d\TH:i', new DateBetweenFestival],
             'youtube_link' =>  ['nullable', new Url],
         ]);
 

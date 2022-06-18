@@ -128,7 +128,7 @@
                 <div class="card-body">
                     <input style="display: none" type="text" name="timeslot_id" value="">
                     <div styleclass="form-group">
-                        <label for="start">Start time:</label>
+                        <label for="start">Start date:</label>
                        
                         <input type="date" id="start" name="start"   @if($festival->start_date)
                         value="{{ $festival->start_date->format('Y-m-d') }}"
@@ -136,7 +136,7 @@
                         
                     </div>
                     <div class="form-group">
-                        <label for="end">End time:</label>
+                        <label for="end">End date:</label>
                         <input type="date" id="end" name="end"  @if($festival->end_date)
                         value="{{ $festival->end_date->format('Y-m-d') }}"
                         @endif required>
