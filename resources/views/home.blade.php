@@ -3,15 +3,8 @@
 @section('content')
 
 <div class="container-fluid">
-    @if ($errors->any())
-        <div class="alert alert-danger">
-            <ul class="error-alert" style="margin: 0">
-                @foreach ($errors->all() as $error)
-                    <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    
+    @include('common.errors')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Overview</h1>
@@ -182,7 +175,7 @@
                         <input id='lat' type="text" name="lat" class="form-control" value="{{ $festival->lat}}">
                       </div>
                       <div class="form-group">
-                        <label for="long">Lat:</label>
+                        <label for="long">Lng:</label>
                         <input id='long' type="text" name="long" class="form-control" value="{{ $festival->long }}">
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
@@ -210,8 +203,11 @@
                     <div>
                         <div class="row text-center text-lg-start">
                             @foreach ($festival->photos as $photo)
+
+                            
                                 <div class="col-lg-3 col-md-4 col-6">
-                              <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
+                                    <a href="/delete-image/{{$photo->id}}"><span class="close">&times;</span></a>
+                                     <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
                                 <img class="img-fluid img-thumbnail" src="{{ asset('/storage/'.$photo->path) }}" alt="">
                               </a>
                             </div>

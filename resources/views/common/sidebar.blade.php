@@ -54,6 +54,12 @@
             <span>Performances</span></a>
     </li>
 
+    <li class="nav-item">
+        <a class="nav-link" href="/genres">
+            <i class="fas fa-fw fa-compact-disc"></i>
+            <span>Genres</span></a>
+    </li>
+
     
 
     <!-- Divider -->

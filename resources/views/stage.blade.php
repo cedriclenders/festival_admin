@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
+    @include('common.errors')
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">

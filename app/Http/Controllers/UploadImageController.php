@@ -69,5 +69,13 @@ class UploadImageController extends Controller
         return $festivalPaths;
     }
 
+
+    public function delete($id)
+    {
+        $image = Photo::findOrFail($id);
+        $image->delete();
+        return redirect()->back();
+    }
+
     
 }

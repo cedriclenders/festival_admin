@@ -1,20 +1,48 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
-
+    @include('common.errors')
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Add Performance</h1>
         
-    </div>
 
     <!-- Content Row -->
 
+    @if(!(App\Models\Stage::all()->count()))
+        <h1 class="h3 mb-0 text-gray-800">No stages</h1>
+        <a href="{{url('/stage-add')}}"><button type="button" class="btn btn-primary">Add Stage</button></a>
+    </div>
+    <div class="modal" id="stageModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">No stages</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <p>You need atleast 1 stage before you can make a performance.</p>
+            </div>
+            <div class="modal-footer">
+                <a href="{{url('/stage-add')}}"><button type="button" class="btn btn-primary">Add Stage</button></a>
+                <a href="{{url('/')}}"><button type="button" class="btn btn-secondary">Return</button></a>
+            </div>
+          </div>
+        </div>
+    </div>
+</div>
+<script type="text/javascript">
+    $(window).on('load',function(){
+        $('#stageModal').modal('show');
+    });
+</script>
+    @else
+    <h1 class="h3 mb-0 text-gray-800">Add Performance</h1>
+</div>
     <div class="row">
         <!-- Description -->
         <div class="col-xl-8 col-lg-7">
-            
-            
             <div class="card shadow mb-4">
                 <!-- Card Header - Dropdown -->
                 <div
@@ -34,7 +62,7 @@
                         <div class="form-group">
                             <label>Description:</label><textarea class="ckeditor form-control" name="description" required> </textarea>
                         </div>
-
+                        
                         <div class="form-group">
                             <label for="name">Genre:</label>
                             @foreach (App\Models\Genre::all() as $genre)                     
@@ -45,6 +73,12 @@
                                     </label>
                                 </div>
                             @endforeach
+                        </div>
+
+                        <div class="form-group">
+                            <label class="control-label" for="youtube_link"><i class="fab fa-youtube"></i> Youtube link
+                            </label>
+                            <input type="text" name="youtube_link" class="form-control" id="youtube_link" placeholder="https://www.youtube.com/watch?v=OS8taasZl8k" >
                         </div>
                     
                 </div>
@@ -98,6 +132,8 @@
             </div>
     </div>
     </div>
-    
 </div>
+    @endif
+
+
 @endsection

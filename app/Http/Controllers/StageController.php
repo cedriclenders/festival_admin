@@ -23,11 +23,16 @@ class StageController extends Controller
 
    public function update(Request $request)
    {
-       $description = $request['description'];
-       $name = $request['name'];
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'nullable',
+            'lat' => 'nullable|numeric|min:-90|max:90',
+            'long' => 'nullable|numeric|min:-180|max:180',
+        ]);
+
        $stage = Stage::firstOrNew(['id' => $request['id']]);
-       $stage->description = $description;
-       $stage->name = $name;
+       $stage->description = $request['description'];
+       $stage->name = $request['name'];
        $stage->long = $request['long'];
        $stage->lat = $request['lat'];
        $stage->save();

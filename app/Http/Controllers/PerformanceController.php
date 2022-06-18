@@ -7,6 +7,7 @@ use App\Models\Performance;
 use App\Models\Performer;
 use App\Models\Timeslot;
 use App\Models\Like;
+use App\Rules\Url;
 
 class PerformanceController extends Controller
 {
@@ -37,16 +38,24 @@ class PerformanceController extends Controller
     
     public function update(Request $request)
     {
-        $performerDescription = $request['description'];
-        $performerName = $request['name'];
+        $validated = $request->validate([
+            'name' => 'required',
+            'description' => 'required',
+            'genre_id' => 'required',
+            'startTime' => 'required|date_format:Y-m-d\TH:i',
+            'endTime' => 'required|date_format:Y-m-d\TH:i',
+            'youtube_link' =>  ['nullable', new Url],
+        ]);
+
         $performance = Performance::firstOrNew(['id' => $request['id']]);
 
         // Performaner aanmaken of updaten
 
         $performer = Performer::firstOrNew(['id' => $request['performer_id']]);
-        $performer->name = $performerName;
-        $performer->description = $performerDescription;
+        $performer->name = $request['name'];
+        $performer->description = $request['description'];
         $performer->genre_id = $request['genre_id'];
+        $performer->youtube_link = $request['youtube_link'];
         $performer->save();
 
         $timeSlot = Timeslot::firstOrNew(['id' => $request['timeslot_id']]);

@@ -5,7 +5,6 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Add Stage</h1>
-        
     </div>
 
 
@@ -27,7 +26,7 @@
                         <input style="display: none" type="text" name="id" value="">
                         <div class="form-group">
                             <label for="name">Name:</label>
-                            <input type="text" name="name" class="form-control" id="name" value="">
+                            <input type="text" name="name" class="form-control" id="name" value="" required>
                           </div>
                         <div class="form-group">
                             <label>Description:</label><textarea class="ckeditor form-control" name="description"></textarea>
@@ -59,11 +58,11 @@
                         </div>
                         <br/>
                         <label for="lat">Lat:</label>
-                        <input id='lat' type="text" name="lat" class="form-control" value="">
+                        <input id='lat' type="text" name="lat" class="form-control" value="{{$festival->lat}}" required>
                       </div>
                       <div class="form-group">
-                        <label for="long">Lat:</label>
-                        <input id='long' type="text" name="long" class="form-control" value="">
+                        <label for="long">Long:</label>
+                        <input id='long' type="text" name="long" class="form-control" value="{{$festival->long}}" required>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </form>

@@ -18,7 +18,8 @@ class FestivalController extends Controller
     {
         $validated = $request->validate([
             'name' => 'required',
-            'start' => 'required',
+            'start' => 'required|date',
+            'description' => 'required',
             'end' => 'required|date|after_or_equal:start',
             'lat' => 'nullable|numeric|min:-90|max:90',
             'long' => 'nullable|numeric|min:-180|max:180',

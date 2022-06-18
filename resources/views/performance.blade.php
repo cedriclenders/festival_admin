@@ -1,6 +1,7 @@
 @extends('layouts.master')
 @section('content')
 <div class="container-fluid">
+    @include('common.errors')
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
@@ -57,6 +58,13 @@
                                 </div>
                                 @endif
                             @endforeach
+                            <br />
+                            <div class="form-group">
+                                <label class="control-label" for="youtube_link"><i class="fab fa-youtube"></i> Youtube link
+                                </label>
+                                <input type="text" name="youtube_link" class="form-control" id="youtube_link" placeholder="https://www.youtube.com/watch?v=OS8taasZl8k" value="{{$performance->performer->youtube_link}}">
+                            </div>
+                            
                         </div>
                     
                 </div>
@@ -146,10 +154,11 @@
                         <div class="row text-center text-lg-start">
                             @foreach ($performance->performer->photos as $photo)
                                 <div class="col-lg-3 col-md-4 col-6">
-                              <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
+                                    <a href="/delete-image/{{$photo->id}}"><span class="close">&times;</span></a>
+                                    <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
                                 <img class="img-fluid img-thumbnail" src="{{ asset('/storage/'.$photo->path) }}" alt="">
-                              </a>
-                            </div>
+                                </a>
+                                </div>
                             
                             @endforeach
                             
