@@ -223,9 +223,6 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="file" name="image" placeholder="Choose image" id="image">
-                                @error('image')
-                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                @enderror
                                 </div>
                             </div>
                             
@@ -276,9 +273,6 @@
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <input type="file" name="image" placeholder="Choose image" id="image">
-                                @error('icon')
-                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
-                                @enderror
                                 </div>
                             </div>
                             
