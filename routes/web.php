@@ -61,6 +61,7 @@ Route::group(['middleware' => 'auth'], function () {
 
         Route::post('save-festival-image', [App\Http\Controllers\UploadImageController::class, 'saveFestivalImage']);
         Route::post('save-performer-image/{performance}', [App\Http\Controllers\UploadImageController::class, 'savePerformerImage']);
+        Route::post('save-app-image', [App\Http\Controllers\UploadImageController::class, 'saveAppImage']);
         Route::get('delete-image/{id}', [App\Http\Controllers\UploadImageController::class, 'delete']);
         Route::post('update-stage', [App\Http\Controllers\StageController::class, 'update'])->name('stageUpdate');
         Route::post('update-performance', [App\Http\Controllers\PerformanceController::class, 'update'])->name('performanceUpdate');

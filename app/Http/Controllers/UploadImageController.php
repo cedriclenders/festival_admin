@@ -11,7 +11,28 @@ use App\Models\Festival;
 class UploadImageController extends Controller
 {
     //
-
+    public function saveAppImage(Request $request)
+    {
+         
+        $validatedData = $request->validate([
+         'image' => 'required|image|mimes:jpg,png,jpeg,gif,svg|max:2048|dimensions:ratio=1/1',
+        ]);
+        
+        $name = $request->file('image')->getClientOriginalName();
+ 
+        $path = $request->file('image')->store('public/images');
+ 
+        $save = new Photo;
+        
+        $save->name = $name;
+        $save->festival_id = 1;
+        $save->is_app_icon = true;
+        $save->path = str_replace("public/","",$path);
+        $save->save();
+ 
+        return redirect('/')->with('icon', 'Icon Has been uploaded');
+ 
+    }
  
     public function saveFestivalImage(Request $request)
     {
@@ -25,7 +46,7 @@ class UploadImageController extends Controller
         $path = $request->file('image')->store('public/images');
  
         $save = new Photo;
-        
+        $save->is_app_icon = false;
         $save->name = $name;
         $save->path = str_replace("public/","",$path);
         $save->festival_id = 1;
@@ -48,6 +69,7 @@ class UploadImageController extends Controller
         $save = new Photo;
         
         $save->name = $name;
+        $save->is_app_icon = false;
         $save->path = str_replace("public/","",$path);
         $save->performer_id = $performance->performer->id;
         $save->save();

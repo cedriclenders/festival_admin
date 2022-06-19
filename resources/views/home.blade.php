@@ -237,7 +237,64 @@
 
                 </div>
 
+                
+
             </div>
+            
+        </div>
+
+        <div class="col-xl-6 col-lg-7">
+            <!-- Content Column -->
+            <div class="card shadow mb-4">
+                <!-- Card Header - Dropdown -->
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">App Icon</h6>
+                </div>
+                <!-- Description Body -->
+                <div class="card-body">
+                    <div>
+                        <p>Add an icon for the app. This image has to be square!</p>
+                        <div class="row text-center text-lg-start">
+                            @foreach ($festival->icons as $photo)                       
+                                <div class="col-lg-3 col-md-4 col-6">
+                                    <a href="/delete-image/{{$photo->id}}"><span class="close">&times;</span></a>
+                                     <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="{{ asset('/storage/'.$photo->path) }}" alt="">
+                              </a>
+                            </div>
+                            
+                            @endforeach
+                            
+                          </div>
+                    </div>
+                    @if($festival->icons->count() == 0)
+                    <form method="POST" enctype="multipart/form-data" id="upload-image" action="{{ url('save-app-image') }}" >
+                        @csrf
+                        <div class="row">
+            
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <input type="file" name="image" placeholder="Choose image" id="image">
+                                @error('icon')
+                                    <div class="alert alert-danger mt-1 mb-1">{{ $message }}</div>
+                                @enderror
+                                </div>
+                            </div>
+                            
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary" id="submit">Upload</button>
+                            </div>
+                        </div>     
+                    </form>
+                    @endif
+
+                </div>
+
+                
+
+            </div>
+            
         </div>
     </div>
 
