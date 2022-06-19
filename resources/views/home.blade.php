@@ -207,8 +207,8 @@
                             
                                 <div class="col-lg-3 col-md-4 col-6">
                                     <a href="/delete-image/{{$photo->id}}"><span class="close">&times;</span></a>
-                                     <a href="{{ asset($photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
-                                <img class="img-fluid img-thumbnail" src="{{ asset($photo->path) }}" alt="">
+                                     <a href="{{ asset('/storage/'.$photo->path) }}" target="_blank" data-fancybox="images" class="d-block mb-4 h-100">
+                                <img class="img-fluid img-thumbnail" src="{{ asset('/storage/'.$photo->path) }}" alt="">
                               </a>
                             </div>
                             
