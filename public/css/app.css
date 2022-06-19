@@ -10,6 +10,16 @@
   margin: 0;
 }
 
+.align-ver-hor-center{
+  display: flex !important;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.title-login{
+  font-size: 3.5em;
+}
+
 .delete-icon {
   position: absolute;
   top: 2px;
@@ -30,3 +40,4 @@
 .delete-icon:hover .close {
   opacity: 1;
 }
+
