@@ -76,4 +76,9 @@
     
 
 </div>
+<script src="{{ asset('js/location.js') }}"></script>
+<script
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBrQsfEb0xqDCxuElEgT9m-HmpwzO4_bAs&callback=initMap"
+defer
+></script>
 @endsection

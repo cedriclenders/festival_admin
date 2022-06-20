@@ -5,8 +5,7 @@
 
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Update stage</h1>
-        
+        <h1 class="h3 mb-0 text-gray-800">Add Marker</h1>
     </div>
 
 
@@ -19,21 +18,25 @@
                 <!-- Card Header - Dropdown -->
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                    <h6 class="m-0 font-weight-bold text-primary">Stage Info</h6>
+                    <h6 class="m-0 font-weight-bold text-primary">Marker Info</h6>
                 </div>
                 <!-- Description Body -->
                 <div class="card-body">
-                    <form method="POST" action="{{route('stageUpdate')}}" enctype="multipart/form-data">
+                    <form method="POST" action="{{route('storeMarker')}}" enctype="multipart/form-data">
                         @csrf
-                        <input style="display: none" type="text" name="id" value="{{$stage->id}}">
+                        <input style="display: none" type="text" name="id" value="">
                         <div class="form-group">
                             <label for="name">Name:</label>
-                            <input type="text" name="name" class="form-control" id="name" value="{{ $stage->name }}">
+                            <input type="text" name="name" class="form-control" id="name" value="" required>
                           </div>
-                        <div class="form-group">
-                            <label>Description:</label><textarea class="ckeditor form-control" name="description">{{ $stage->description }} </textarea>
+                        <div class="input-style input-style-always-active has-borders validate-field">
+                            <label for="icon" class="color-blue-dark font-13">Icon</label>
+                            <select name="icon" id="icon">
+                                <option value="/icons/wc.png">🚾&emsp;WC</option>
+                                <option value="/icons/food.png">🍽️&emsp;Food</option>
+                                <option value="/icons/drink.png">🍺&emsp;Drinks</option>
+                            </select>
                         </div>
-                            
                 </div>
             </div>
         </div>
@@ -61,11 +64,11 @@
                         </div>
                         <br/>
                         <label for="lat">Lat:</label>
-                        <input id='lat' type="text" name="lat" class="form-control" value="{{ $stage->lat}}">
+                        <input id='lat' type="text" name="lat" class="form-control" value="{{$festival->lat}}" required>
                       </div>
                       <div class="form-group">
-                        <label for="long">Lat:</label>
-                        <input id='long' type="text" name="long" class="form-control" value="{{ $stage->long }}">
+                        <label for="long">Long:</label>
+                        <input id='long' type="text" name="long" class="form-control" value="{{$festival->long}}" required>
                       </div>
                       <button type="submit" class="btn btn-primary">Submit</button>
                     </form>
@@ -74,7 +77,7 @@
         </div>
     </div>
 
-   
+    <!-- Content Row -->
     
 
 </div>

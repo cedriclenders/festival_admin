@@ -36,6 +36,13 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/performances', [App\Http\Controllers\PerformanceController::class, 'getAll']);
         Route::get('/genres', [App\Http\Controllers\GenreController::class, 'getAll']);
         Route::get('/stages', [App\Http\Controllers\StageController::class, 'getAll']);
+        Route::get('/markers', [App\Http\Controllers\MarkerController::class, 'getAll']);
+        Route::get('/markers-data', [App\Http\Controllers\MarkerController::class, 'getAllJson']);
+        Route::get('/marker-add', function()
+        {
+            return view('marker-add');
+        });
+        Route::post('/store-marker', [App\Http\Controllers\MarkerController::class, 'add'])->name('storeMarker');
         Route::get('/performance/{id}', [App\Http\Controllers\PerformanceController::class, 'get']);
         Route::get('/stage/{id}', [App\Http\Controllers\StageController::class, 'get']);
 
