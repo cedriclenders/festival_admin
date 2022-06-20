@@ -29,13 +29,6 @@
                     <td>
                         <!-- Call to action buttons -->
                         <ul class="list-inline m-0">
-                           
-                                <li class="list-inline-item">
-                                    <a href="/marker/{{$marker->id}}">
-                                    <button class="btn btn-success btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Edit"><i class="fa fa-edit"></i></button>
-                                     </a>       
-                                </li>
-                            
                             <li class="list-inline-item">
                                 <a href="/marker-delete/{{$marker->id}}">
                                 <button class="btn btn-danger btn-sm rounded-0" type="button" data-toggle="tooltip" data-placement="top" title="Delete"><i class="fa fa-trash"></i></button>

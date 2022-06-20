@@ -40,4 +40,13 @@ class MarkerController extends Controller
 
        return redirect('/markers');
     }
+
+    public function delete($id)
+    {
+        $marker = Marker::find($id);
+        
+        $marker->delete();
+ 
+        return redirect('/markers');   
+    }
 }

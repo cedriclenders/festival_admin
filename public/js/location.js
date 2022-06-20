@@ -1,10 +1,10 @@
 function initMap() {
 
-    var myLatlng = { lat:  50.85045, lng:  4.34878 };
+    var myLatlng = { lat:  50.967825379243, lng:  4.6907083651123 };
     var lat = parseFloat(document.getElementById("lat").value);
     var long = parseFloat(document.getElementById("long").value);
     if(isNaN(lat) || isNaN(long)){
-         myLatlng = { lat:  50.85045, lng:  4.34878 };
+        myLatlng = { lat:  50.967825379243, lng:  4.6907083651123 };
     }
     else{
          myLatlng = { lat:  lat, lng:  long };

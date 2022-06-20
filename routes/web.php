@@ -43,6 +43,8 @@ Route::group(['middleware' => 'auth'], function () {
             return view('marker-add');
         });
         Route::post('/store-marker', [App\Http\Controllers\MarkerController::class, 'add'])->name('storeMarker');
+        Route::get('/marker-delete/{id}', [App\Http\Controllers\MarkerController::class, 'delete']);
+
         Route::get('/performance/{id}', [App\Http\Controllers\PerformanceController::class, 'get']);
         Route::get('/stage/{id}', [App\Http\Controllers\StageController::class, 'get']);
 

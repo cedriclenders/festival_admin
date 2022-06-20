@@ -7,7 +7,7 @@
  const createMap = ({ lat, lng }) => {
     return new google.maps.Map(document.getElementById('google-map'), {
       center: { lat, lng },
-      zoom: 17,
+      zoom: 15,
       mapTypeId: google.maps.MapTypeId.ROADMAP, 
       styles: [ 
         { 
@@ -56,7 +56,7 @@
 
     function initialize(results) { 
      
-        const initialPosition = { lat: 59.32, lng: 17.84 };
+        const initialPosition = { lat: 50.967825379243, lng: 4.6907083651123 };
         
         const map = createMap(initialPosition);
 
