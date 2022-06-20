@@ -53,7 +53,7 @@ class FestivalController extends Controller
     {
         $festival = Festival::findOrFail(1);
         $icons = $festival->icons()->first();
-        $iconPath= "";
+        $iconPath= url('/images/PWA-default.png');
         if($icons)
         {
             $iconPath = url('/storage/'.$icons->path);
