@@ -52,9 +52,15 @@ class FestivalController extends Controller
     public function getManifest()
     {
         $festival = Festival::findOrFail(1);
+        $icons = $festival->icons()->first();
+        $iconPath= "";
+        if($icons)
+        {
+            $iconPath = url('/storage/'.$icons->path);
+        }
           return response()->json([
             'name' => $festival->name,
-            'icon' => 'https://admin.festivalue.cedric.lenders.nxtmediatech.eu/storage/images/tnSigDfLChTDPTx7SChIrgtZ7HopLSIt8FuSlwsf.png',
+            'icon' => $iconPath,
         ]);
     }
 }
