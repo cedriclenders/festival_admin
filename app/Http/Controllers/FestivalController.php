@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\CustomNotification;
 use Illuminate\Http\Request;
 use App\Models\Festival;
 
@@ -56,5 +57,14 @@ class FestivalController extends Controller
             'name' => $festival->name,
             'icon' => 'https://admin.festivalue.cedric.lenders.nxtmediatech.eu/storage/images/tnSigDfLChTDPTx7SChIrgtZ7HopLSIt8FuSlwsf.png',
         ]);
+    }
+
+    public function addNotification(Request $request)
+    {
+        $notification = new CustomNotification();
+        $notification->title = $request['title'];
+        $notification->description = $request['description'];
+        $notification->save();
+        return redirect('/')->with('success','Gelukt');
     }
 }

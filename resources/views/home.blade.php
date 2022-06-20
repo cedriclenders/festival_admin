@@ -8,7 +8,9 @@
     <!-- Page Heading -->
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Overview</h1>
-        
+        <div class="float-right">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addNotificationModal">Send Notification</button>
+        </div>
     </div>
 
     <!-- Content Row -->
@@ -284,14 +286,36 @@
                     @endif
 
                 </div>
-
-                
-
-            </div>
-            
+            </div>          
         </div>
     </div>
-
+<!-- Modal -->
+<div class="modal fade" id="addNotificationModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">Send notification</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form action="{{route('sendNotification')}}" method="POST">
+                @csrf
+                <div>
+                    <label for="title">Title:</label><br>
+                    <input type="text" id="title" name="title" value="" placeholder="Title" required>
+                </div>
+                <div>
+                    <label for="description">Description:</label><br>
+                    <input type="text" id="description" name="description" value="" placeholder="Description" required><br><br>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+              </form>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <script src="{{ asset('js/location.js') }}"></script>
 <script
