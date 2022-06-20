@@ -20,3 +20,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::get('festival-images', [App\Http\Controllers\UploadImageController::class, 'getFestivalImagePaths']);
 Route::get('perfomer-images/{id}', [App\Http\Controllers\UploadImageController::class, 'getPerformerImagePaths']);
+Route::get('/manifest', [App\Http\Controllers\FestivalController::class, 'getManifest']);

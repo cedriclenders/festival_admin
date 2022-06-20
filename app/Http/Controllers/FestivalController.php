@@ -48,4 +48,13 @@ class FestivalController extends Controller
             return redirect('/')->with('success','Image Upload successfully');
         }
     }
+
+    public function getManifest()
+    {
+        $festival = Festival::findOrFail(1);
+          return response()->json([
+            'name' => $festival->name,
+            'icon' => 'https://admin.festivalue.cedric.lenders.nxtmediatech.eu/storage/images/tnSigDfLChTDPTx7SChIrgtZ7HopLSIt8FuSlwsf.png',
+        ]);
+    }
 }
