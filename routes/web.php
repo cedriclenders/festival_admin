@@ -84,6 +84,6 @@ Route::group(['middleware' => 'auth'], function () {
         Route::get('/faq/{id}', [App\Http\Controllers\FaqController::class, 'get']);
         Route::get('/faq-delete/{id}', [App\Http\Controllers\FaqController::class, 'delete']);
 
-
+        Route::post('/sent-notification', [App\Http\Controllers\FestivalController::class, 'addNotification'])->name('sendNotification');
     });
 });
