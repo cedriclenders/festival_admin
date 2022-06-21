@@ -308,7 +308,7 @@
                 </div>
                 <div>
                     <label for="description">Description:</label><br>
-                    <input type="text" id="description" name="description" value="" placeholder="Description" required><br><br>
+                    <input class="full-input" type="text" id="description" name="description" value="" placeholder="Description" required><br><br>
                 </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
               </form>

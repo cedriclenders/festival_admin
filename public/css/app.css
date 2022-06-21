@@ -39,3 +39,7 @@
 .delete-icon:hover .close {
   opacity: 1;
 }
+
+.full-input {
+  width: 100% !important;
+}
